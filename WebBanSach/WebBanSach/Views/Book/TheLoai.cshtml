@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebBanSach.Models.THELOAI>
+
+@foreach(var item in Model)
+{
+    <li>
+        <a href="@Url.Action("SachTheoTL","Book",new { id = item.MaTL})">
+            @item.TenTL
+        </a>
+    </li>
+}

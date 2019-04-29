@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBBOOK" Class="dbBookDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DOPHUC;Initial Catalog=DBBOOK;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DBBOOKConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ADMIN" Member="ADMINs">
+    <Type Name="ADMIN">
+      <Column Name="MaAdmin" Type="System.String" DbType="VarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="TenAd" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TACGIA" Member="TACGIAs">
+    <Type Name="TACGIA">
+      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACHHANG" Member="KHACHHANGs">
+    <Type Name="KHACHHANG">
+      <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TaiKhoan" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="DienThoai" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NGUOIBAN" Member="NGUOIBANs">
+    <Type Name="NGUOIBAN">
+      <Column Name="MaNB" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HoTenNB" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TKNB" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MKNB" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailNB" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DiachiNB" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="DienThoauiNB" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="NGUOIBAN_SACH" Member="SACHes" ThisKey="MaNB" OtherKey="MaNB" Type="SACH" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NXB" Member="NXBs">
+    <Type Name="NXB">
+      <Column Name="MaNXB" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenNXB" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="NXB_SACH" Member="SACHes" ThisKey="MaNXB" OtherKey="MaNXB" Type="SACH" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SACH" Member="SACHes">
+    <Type Name="SACH">
+      <Column Name="MaSach" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenSach" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="AnhBia" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NgayUpdate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Soluong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GiaBan" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="ShipNoiThanh" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="ShipTinh" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TacGia" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MaNXB" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaTL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaNB" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="NGUOIBAN_SACH" Member="NGUOIBAN" ThisKey="MaNB" OtherKey="MaNB" Type="NGUOIBAN" IsForeignKey="true" />
+      <Association Name="NXB_SACH" Member="NXB" ThisKey="MaNXB" OtherKey="MaNXB" Type="NXB" IsForeignKey="true" />
+      <Association Name="THELOAI_SACH" Member="THELOAI" ThisKey="MaTL" OtherKey="MaTL" Type="THELOAI" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.THELOAI" Member="THELOAIs">
+    <Type Name="THELOAI">
+      <Column Name="MaTL" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenTL" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="THELOAI_SACH" Member="SACHes" ThisKey="MaTL" OtherKey="MaTL" Type="SACH" />
+    </Type>
+  </Table>
+</Database>

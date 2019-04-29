@@ -1,0 +1,32 @@
+﻿@using WebBanSach.Models;
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<h1>Chi tiết sách</h1>
+
+<h1>@Model.TenSach - <span>@Model.TacGia</span></h1>
+
+<div class="image_panel"><img src="~/Content/bs/images/templatemo_image_02.jpg" alt="CSS Template" width="115" height="170" /></div>
+
+<h2>Giá bán: @Model.GiaBan VNĐ</h2>
+
+<ul>
+    <li>Số lượng: @Model.Soluong cuốn</li>
+    <li>Thể loại: <a href="@Url.Action("SachTheoTL","Book",new { id = Model.MaTL})">@Model.THELOAI.TenTL</a></li>
+    <li>Nhà xuất bản: <a href="@Url.Action("SachTheoNXB","Book",new { id = Model.MaNXB})">@Model.NXB.TenNXB</a></li>
+    <li>Người bán: <a href="@Url.Action("InfoSeller","Book",new { id = Model.MaNB})">@Model.NGUOIBAN.HoTenNB</a></li>
+    <li>Địa chỉ: @Model.NGUOIBAN.DiachiNB</li>
+    <li>Ship nội thành: @Model.ShipNoiThanh VNĐ</li>
+    <li>Ship tỉnh: @Model.ShipTinh</li>
+</ul>
+
+<p>@Model.MoTa</p>
+
+
+<div class="cleaner_with_height">&nbsp;</div>
+
+<a href="index.html"><img src="images/templatemo_ads.jpg" alt="css template ad" /></a>
