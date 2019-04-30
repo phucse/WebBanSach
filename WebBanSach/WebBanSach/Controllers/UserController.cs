@@ -161,15 +161,24 @@ namespace WebBanSach.Controllers
         public ActionResult DangXuat()
         {
             Session["taikhoan"] = null;
+            Session["id"] = null;
             return RedirectToAction("Index","Book");
         }
 
         public ActionResult TTCN(int id)
         {
-            var us = from u in db.KHACHHANGs
-                     where u.MaKH == id
-                     select u;
-            return View(us.Single());
+            if(Session["id"]==null)
+            {
+                return RedirectToAction("DangNhap", "User");
+            }
+            else
+            {
+                var us = from u in db.KHACHHANGs
+                         where u.MaKH == id
+                         select u;
+                return View(us.Single());
+            }
+            
         }
     }
 }
