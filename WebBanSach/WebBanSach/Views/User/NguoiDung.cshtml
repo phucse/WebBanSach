@@ -1,0 +1,12 @@
+﻿
+@if (Session["taikhoan"] == null)
+{
+    <li><a href="@Url.Action("DangNhap","User")">Đăng nhập</a> / <a href="@Url.Action("DangKy","User")">Đăng kí</a></li>
+}
+else
+{
+    <li>Xin chào <a href="@Url.Action("TTCN", "User",new { id=@Session["id"]})">@Session["taikhoan"]</a></li>
+    <li><a href="@Url.Action("DangXuat","User")">Đăng xuất</a></li>
+}
+
+

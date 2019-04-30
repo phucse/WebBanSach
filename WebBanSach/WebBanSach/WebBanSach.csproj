@@ -173,6 +173,7 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -398,6 +399,10 @@
     <Content Include="Views\Book\SachTheoTL.cshtml" />
     <Content Include="Views\Book\SachTheoNXB.cshtml" />
     <Content Include="Views\Book\Detail.cshtml" />
+    <Content Include="Views\User\DangKy.cshtml" />
+    <Content Include="Views\User\DangNhap.cshtml" />
+    <Content Include="Views\User\NguoiDung.cshtml" />
+    <Content Include="Views\User\TTCN.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
