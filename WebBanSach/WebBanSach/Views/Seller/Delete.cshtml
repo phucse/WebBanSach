@@ -1,0 +1,112 @@
+﻿@using WebBanSach.Models
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutSeller.cshtml";
+}
+
+<h2>XÁC NHẬN XOÁ SÁCH</h2>
+
+<h3>Bạn có chắc có muốn xoá cuốn sách này ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sách
+        </dt>
+
+        <dd>
+            @Model.TenSach
+        </dd>
+
+        <dt>
+            Mô tả
+        </dt>
+
+        <dd>
+            @Model.MoTa
+        </dd>
+
+        <dt>
+            Ảnh bìa
+        </dt>
+
+        <dd>
+            @Model.AnhBia
+        </dd>
+
+        <dt>
+            Ngày cập nhật
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", @Model.NgayUpdate)
+        </dd>
+
+        <dt>
+            Số lượng
+        </dt>
+
+        <dd>
+            @Model.Soluong
+        </dd>
+
+        <dt>
+            Giá bán
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,000}", @Model.GiaBan) VNĐ
+        </dd>
+
+        <dt>
+            Giá ship nội thành
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,000}", @Model.ShipNoiThanh) VNĐ
+        </dd>
+
+        <dt>
+            Giá ship tỉnh
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,000}", @Model.ShipTinh) VNĐ
+        </dd>
+
+        <dt>
+            Tác giả
+        </dt>
+
+        <dd>
+            @Model.TacGia
+        </dd>
+
+        <dt>
+            Nhà xuất bản
+        </dt>
+
+        <dd>
+            @Model.NXB.TenNXB
+        </dd>
+
+        <dt>
+            Thể loại
+        </dt>
+
+        <dd>
+            @Model.THELOAI.TenTL
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá sách" class="btn btn-default" /> |<br />
+            @Html.ActionLink("<< Trở về", "QLSach")
+        </div>
+    }
+</div>

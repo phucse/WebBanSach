@@ -1,0 +1,107 @@
+﻿@using WebBanSach.Models;
+
+@{
+    ViewBag.Title = "BookDetail";
+    Layout = "~/Views/Shared/_LayoutSeller.cshtml";
+}
+
+<h2>THÔNG TIN SÁCH</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sách
+        </dt>
+
+        <dd>
+            @Model.TenSach
+        </dd>
+
+        <dt>
+            Mô tả
+        </dt>
+
+        <dd>
+            @Model.MoTa
+        </dd>
+
+        <dt>
+            Ảnh bìa
+        </dt>
+
+        <dd>
+            @Model.AnhBia
+        </dd>
+
+        <dt>
+            Ngày cập nhật
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", @Model.NgayUpdate)
+        </dd>
+
+        <dt>
+            Số lượng
+        </dt>
+
+        <dd>
+            @Model.Soluong
+        </dd>
+
+        <dt>
+            Giá bán
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,000}", @Model.GiaBan) VNĐ
+        </dd>
+
+        <dt>
+            Giá ship nội thành
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,000}", @Model.ShipNoiThanh) VNĐ
+        </dd>
+
+        <dt>
+            Giá ship tỉnh
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,000}", @Model.ShipTinh) VNĐ
+        </dd>
+
+        <dt>
+            Tác giả
+        </dt>
+
+        <dd>
+            @Model.TacGia
+        </dd>
+
+        <dt>
+            Nhà xuất bản
+        </dt>
+
+        <dd>
+            @Model.NXB.TenNXB
+        </dd>
+
+        <dt>
+            Thể loại
+        </dt>
+
+        <dd>
+            @Model.THELOAI.TenTL
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "EditBook", new { id = Model.MaSach }) |
+    @Html.ActionLink("Xoá", "Delete", new { id = Model.MaSach }) <br />
+    @Html.ActionLink("<< Trở về", "QLSach")
+</p>
