@@ -260,6 +260,19 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\templatemo_ads.jpg" />
+    <Content Include="Images\templatemo_bg.jpg" />
+    <Content Include="Images\templatemo_btn_01.jpg" />
+    <Content Include="Images\templatemo_btn_02.jpg" />
+    <Content Include="Images\templatemo_footer_bg.jpg" />
+    <Content Include="Images\templatemo_h1_bg.jpg" />
+    <Content Include="Images\templatemo_header_bg.jpg" />
+    <Content Include="Images\templatemo_header_bg_blank.jpg" />
+    <Content Include="Images\templatemo_image_01.jpg" />
+    <Content Include="Images\templatemo_image_02.jpg" />
+    <Content Include="Images\templatemo_image_03.jpg" />
+    <Content Include="Images\templatemo_image_04.jpg" />
+    <Content Include="Images\templatemo_menu_bg.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Models\dbBook.dbml">
@@ -414,10 +427,18 @@
     <Content Include="Views\Seller\BookDetail.cshtml" />
     <Content Include="Views\Seller\Delete.cshtml" />
     <Content Include="Views\Seller\EditBook.cshtml" />
+    <Content Include="Views\Admin\Sach.cshtml" />
+    <Content Include="Views\Admin\BookDetail.cshtml" />
+    <Content Include="Views\Admin\DeleteBook.cshtml" />
+    <Content Include="Views\Admin\TheLoaiSach.cshtml" />
+    <Content Include="Views\Admin\NXBSach.cshtml" />
+    <Content Include="Views\Admin\CreateTL.cshtml" />
+    <Content Include="Views\Admin\CreateNXB.cshtml" />
+    <Content Include="Views\Admin\DeleteNXB.cshtml" />
+    <Content Include="Views\Admin\DeleteTL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

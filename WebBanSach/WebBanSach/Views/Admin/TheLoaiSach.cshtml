@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebBanSach.Models.THELOAI>
+
+@{
+    ViewBag.Title = "TheLoaiSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>THỂ LOẠI SÁCH</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới thể loại", "CreateTL")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên thể loại
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenTL)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "EditTL", new { id=item.MaTL }) |
+            @Html.ActionLink("Xoá", "DeleteTL", new { id=item.MaTL })
+        </td>
+    </tr>
+}
+
+</table>

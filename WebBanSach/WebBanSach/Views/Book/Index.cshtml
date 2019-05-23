@@ -21,7 +21,7 @@
 {
     <div class="templatemo_product_box">
         <h1>@Truncate(@sach.TenSach, 15) <span>(@sach.TacGia)</span></h1>
-        <img src="~/Content/bs/images/templatemo_image_01.jpg" alt="image" />
+        <img src="~/Images/@sach.AnhBia" alt="image" width="100" height="150"/>
         <div class="product_info">
             <p>@Truncate(@sach.MoTa, 55)</p>
             <h3>@String.Format("{0:0,000}", @sach.GiaBan)  VNĐ</h3>

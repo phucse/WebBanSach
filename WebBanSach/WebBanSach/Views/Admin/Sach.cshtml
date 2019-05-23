@@ -1,0 +1,97 @@
+﻿@model IEnumerable<WebBanSach.Models.SACH>
+
+@{
+    ViewBag.Title = "Sach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DANH SÁCH CÁC CUỐN SÁCH</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên sách
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Ảnh bìa
+        </th>
+        <th>
+            Ngày cập nhật
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giá bán
+        </th>
+        <th>
+            Ship nội thành
+        </th>
+        <th>
+            Ship tỉnh
+        </th>
+        <th>
+            Tác giả
+        </th>
+        <th>
+            Nhà xuất bản
+        </th>
+        <th>
+            Thể loại
+        </th>
+        <th>
+            Người bán
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.ActionLink(item.TenSach, "BookDetail", new { id = item.MaSach })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoTa)
+        </td>
+        <td>
+            @*<img src="~/Content/bs/images/@item.AnhBia" alt="image" />*@
+            <img src="~/Images/@item.AnhBia" style="width: 115px; height:170px" alt="image" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayUpdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soluong)
+        </td>
+        <td>
+            @String.Format("{0:0,000}", item.GiaBan)
+        </td>
+        <td>
+            @String.Format("{0:0,000}", item.ShipNoiThanh)
+        </td>
+        <td>
+            @String.Format("{0:0,000}", item.ShipTinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TacGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NXB.TenNXB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THELOAI.TenTL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGUOIBAN.HoTenNB)
+        </td>
+        <td>
+            @Html.ActionLink("Xoá", "DeleteBook", new { id = item.MaSach })
+        </td>
+    </tr>
+    }
+
+</table>

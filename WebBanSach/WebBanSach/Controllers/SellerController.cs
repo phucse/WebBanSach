@@ -105,17 +105,18 @@ namespace WebBanSach.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    var filename = Path.GetFileName(fileUpload.FileName);
+                    var filename = DateTime.Now.ToString("ddMMyyyy_hhmmss")+Path.GetFileName(fileUpload.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), filename);
 
-                    if (System.IO.File.Exists(path))
-                    {
-                        ViewBag.ThongBao = "File đã tồn tại";
-                    }
-                    else
-                    {
-                        fileUpload.SaveAs(path);
-                    }
+                    //if (System.IO.File.Exists(path))
+                    //{
+                    //    ViewBag.ThongBao = "File đã tồn tại";
+                    //}
+                    //else
+                    //{
+
+                    //}
+                    fileUpload.SaveAs(path);
 
                     sach.AnhBia = filename;
                     sach.NgayUpdate = DateTime.Now;
@@ -168,7 +169,7 @@ namespace WebBanSach.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-
+                        
             db.SACHes.DeleteOnSubmit(sach);
             db.SubmitChanges();
             return RedirectToAction("QLSach");
@@ -207,23 +208,36 @@ namespace WebBanSach.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var filename = Path.GetFileName(fileUpload.FileName);
+                    var filename = DateTime.Now.ToString("ddMMyyyy_hhmmss") + Path.GetFileName(fileUpload.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), filename);
 
-                    if (System.IO.File.Exists(path))
-                    {
-                        ViewBag.ThongBao = "File đã tồn tại";
-                    }
-                    else
-                    {
-                        fileUpload.SaveAs(path);
-                    }
+                    //if (System.IO.File.Exists(path))
+                    //{
+                    //    ViewBag.ThongBao = "File đã tồn tại";
+                    //}
+                    //else
+                    //{
 
-                    sach.AnhBia = filename;
-                    sach.NgayUpdate = DateTime.Now;
-                    sach.MaNB = (int)Session["seller"];
+                    //}
+                    fileUpload.SaveAs(path);
 
-                    UpdateModel(sach);
+                    var s = db.SACHes.SingleOrDefault(sa => sa.MaSach == sach.MaSach);
+
+                    s.AnhBia = filename;
+                    s.NgayUpdate = DateTime.Now;
+                    s.MaNB = (int)Session["seller"];
+                    s.GiaBan = sach.GiaBan;
+                    s.MaNXB = sach.MaNXB;
+                    s.MaTL = sach.MaTL;
+                    s.MoTa = sach.MoTa;
+                    s.ShipNoiThanh = sach.ShipNoiThanh;
+                    s.ShipTinh = sach.ShipTinh;
+                    s.Soluong = sach.Soluong;
+                    s.TacGia = sach.TacGia;
+                    s.TenSach = sach.TenSach;
+
+                    //UpdateModel(sach);
+                    //db.SACHes.Attach(sach);
                     db.SubmitChanges();
                 }
                 return RedirectToAction("QLSach");

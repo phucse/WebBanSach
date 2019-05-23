@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebBanSach.Models.NXB>
+
+@{
+    ViewBag.Title = "NXBSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>NHÀ XUẤT BẢN</h2>
+
+<p>
+    @Html.ActionLink("Thêm nhà xuất bản", "CreateNXB")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên nhà xuất bản
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNXB)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "EditNXB", new { id=item.MaNXB }) |
+            @Html.ActionLink("Xoá", "DeleteNXB", new { id=item.MaNXB })
+        </td>
+    </tr>
+}
+
+</table>

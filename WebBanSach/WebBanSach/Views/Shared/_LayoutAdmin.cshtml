@@ -17,13 +17,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("ADMIN", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ADMIN", "IndexAD", "Admin", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Quản lí sách", "Sach", "Admin")</li>
+                    <li>@Html.ActionLink("Quản lí thể loại", "TheLoaiSach", "Admin")</li>
+                    <li>@Html.ActionLink("Quản lí nhà xuất bản", "NXBSach", "Admin")</li>
+                    <li>@Html.ActionLink("Danh sách đơn hàng", "DSDH", "Admin")</li>
                 </ul>
                 <div class="nav navbar-nav navbar-right">Xin chào S</div>
             </div>

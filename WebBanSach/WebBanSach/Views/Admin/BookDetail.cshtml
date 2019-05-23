@@ -1,13 +1,12 @@
-﻿@using WebBanSach.Models
+﻿@model WebBanSach.Models.SACH
 
 @{
-    ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_LayoutSeller.cshtml";
+    ViewBag.Title = "BookDetail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>XÁC NHẬN XOÁ SÁCH</h2>
+<h2>THÔNG TIN SÁCH</h2>
 
-<h3>Bạn có chắc có muốn xoá cuốn sách này ?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -32,7 +31,7 @@
         </dt>
 
         <dd>
-            <img src="~/Images/@Model.AnhBia" style="width: 115px; height:170px" alt="image" />
+            <img src="~/Images/@Model.AnhBia" style="width: 115px; height:170px" alt="image" />            
         </dd>
 
         <dt>
@@ -99,14 +98,17 @@
             @Model.THELOAI.TenTL
         </dd>
 
+        <dt>
+            Người bán
+        </dt>
+
+        <dd>
+            @Model.NGUOIBAN.HoTenNB
+        </dd>
+
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Xoá sách" class="btn btn-default" /> |<br />
-            @Html.ActionLink("<< Trở về", "QLSach")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Xoá", "DeleteBook", new { id = Model.MaSach }) <br />
+    @Html.ActionLink("<< Trở về", "Sach")
+</p>

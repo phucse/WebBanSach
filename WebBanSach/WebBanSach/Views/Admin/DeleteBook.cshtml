@@ -1,8 +1,8 @@
-﻿@using WebBanSach.Models
+﻿@model WebBanSach.Models.SACH
 
 @{
-    ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_LayoutSeller.cshtml";
+    ViewBag.Title = "DeleteBook";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>XÁC NHẬN XOÁ SÁCH</h2>
@@ -99,14 +99,22 @@
             @Model.THELOAI.TenTL
         </dd>
 
+        <dt>
+            Người bán
+        </dt>
+
+        <dd>
+            @Model.NGUOIBAN.HoTenNB
+        </dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Xoá sách" class="btn btn-default" /> |<br />
-            @Html.ActionLink("<< Trở về", "QLSach")
+            @Html.ActionLink("<< Trở về", "Sach")
         </div>
     }
 </div>
