@@ -16,7 +16,12 @@
                 <li><a href="@Url.Action("LoginS","Seller")">Bán sách</a></li>
                 <li><a href="@Url.Action("Contact","Book")">Liên hệ</a></li>
                 <li><a href="@Url.Action("Contract","Book")">Điều khoản</a></li>
-                <li><input type="search" name="searchbook" /><input type="submit" value="Tìm kiếm" /></li>
+                <li>
+                    @using (Html.BeginForm("Search","Book"))
+                    {
+                        <input type="search" name="searchCode" placeholder="Tìm sách..."/>  <input type="submit" value="Search" />
+                    }
+                </li>
             </ul>
         </div> <!-- end of menu -->
 
@@ -46,7 +51,7 @@
                 <div class="templatemo_content_left_section">
                     <h1>Người dùng</h1>
                     <ul>
-                        @Html.Action("NguoiDung","User")
+                        @Html.Action("NguoiDung", "User")
                         <li><a href="#">Giỏ hàng (0)</a></li>
                     </ul>
                 </div>

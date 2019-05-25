@@ -14,7 +14,7 @@ namespace WebBanSach.Controllers
         // GET: Book
         public ActionResult Index()
         {
-            var book = GetBook();
+            var book = GetBook();           
             return View(book);
         }
 
@@ -53,6 +53,29 @@ namespace WebBanSach.Controllers
                        where b.MaSach == id
                        select b;
             return View(book.Single());
+        }
+
+        public ActionResult Search(String searchCode)
+        {
+            List<SACH> sach;
+            if (!String.IsNullOrEmpty(searchCode))
+            {
+                sach = db.SACHes.Where(n => n.TenSach.Contains(searchCode)).ToList();
+                if (sach.Count == 0)
+                {
+                    ViewData["titleSearch"] = "Không tìm thấy cuốn sách này";
+                    return View(sach);
+                }
+                else
+                {
+                    ViewData["titleSearch"] = "Có " + sach.Count() + " kết quả tìm kiếm: ";
+                    return View(sach);
+                }                    
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }                 
         }
     }
 
