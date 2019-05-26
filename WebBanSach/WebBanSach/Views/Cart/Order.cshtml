@@ -1,0 +1,40 @@
+﻿@using WebBanSach.Models
+@model List<Cart>
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+<table align="center" border="1">
+    <tr style="text-align:center; font-weight:bold">
+        <td>Mã sách</td>
+        <td>Tên sách</td>
+        <td>Ảnh bìa</td>
+        <td>Số lượng</td>
+        <td>Đơn giá</td>
+        <td>Thành tiền</td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center; font-weight:bold">
+            <td>@item.idSach</td>
+            <td>@item.sTenSach</td>
+            <td><img src="~/Images/@item.sAnhBia" width="120" height="150" /></td>
+            <td>@item.iSoLuong</td>
+            <td>@String.Format("{0:0,0}", @item.dDonGia) VNĐ</td>
+            <td>@String.Format("{0:0,0}", item.dThanhTien) VNĐ</td>
+        </tr>
+    }
+
+    <tr style="text-align:right; font-weight:bold; color:red">
+        <td colspan="4">Số lượng sách: @ViewBag.TotalAmount</td>
+        <td colspan="5">Tổng tiền: @String.Format("{0:0,0}", @ViewBag.TotalPrice) VNĐ</td>
+    </tr>
+    <tr style="color:blue; text-align:right; font-weight:bold">
+        <td colspan="6">
+            @Html.ActionLink("<< QUAY VỀ GIỎ HÀNG", "ChiTietGioHang", "Cart")
+        </td>
+    </tr>
+</table>

@@ -25,7 +25,7 @@
         <div class="product_info">
             <p>@Truncate(@sach.MoTa, 55)</p>
             <h3>@String.Format("{0:0,000}", @sach.GiaBan)  VNĐ</h3>
-            <div class="buy_now_button"><a href="#">Thêm</a></div>
+            <div class="buy_now_button"><a href="@Url.Action("AddCart","Cart",new { @iMaSach = @sach.MaSach, @strURL = Request.Url.ToString() })">Thêm</a></div>
             <div class="detail_button"><a href="@Url.Action("Detail","Book",new { id = sach.MaSach})">Chi tiết</a></div>
         </div>
         <div class="cleaner">&nbsp;</div>
