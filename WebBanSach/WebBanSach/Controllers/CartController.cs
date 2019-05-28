@@ -136,5 +136,39 @@ namespace WebBanSach.Controllers
 
             return View(lstcart);
         }
+
+        [HttpPost]
+        public ActionResult Order(FormCollection collection)
+        {
+            DONHANG dh = new DONHANG();
+            KHACHHANG kh = (KHACHHANG)Session["acc"];
+            List<Cart> cart = GetCart();
+            dh.MaKH = kh.MaKH;
+            dh.NgayDat = DateTime.Now;
+            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["ngaygiao"]);
+            dh.NgayGiao = DateTime.Parse(ngaygiao);
+            dh.GiaoHang = false;
+            dh.ThanhToan = false;
+            db.DONHANGs.InsertOnSubmit(dh);
+            db.SubmitChanges();
+
+            foreach(var item in cart)
+            {
+                CTDH ctdh = new CTDH();
+                ctdh.MaDH = dh.MaDH;
+                ctdh.MaSach = item.idSach;
+                ctdh.SoLuong = item.iSoLuong;
+                ctdh.DonGia = (decimal)item.dDonGia;
+                db.CTDHs.InsertOnSubmit(ctdh);
+            }
+            db.SubmitChanges();
+            Session["cart"] = null;
+            return RedirectToAction("ConfirmOrder", "Cart");
+        }
+
+        public ActionResult ConfirmOrder()
+        {
+            return View();
+        }
     }
 }

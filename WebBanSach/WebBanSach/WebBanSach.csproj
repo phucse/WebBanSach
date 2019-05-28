@@ -442,6 +442,7 @@
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Cart\ChiTietGioHang.cshtml" />
     <Content Include="Views\Cart\Order.cshtml" />
+    <Content Include="Views\Cart\ConfirmOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

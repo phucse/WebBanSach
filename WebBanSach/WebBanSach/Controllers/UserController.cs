@@ -140,6 +140,7 @@ namespace WebBanSach.Controllers
                 KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == taikhoan && n.MatKhau == matkhau);
                 if(kh != null)
                 {
+                    Session["acc"] = kh;
                     Session["taikhoan"] = kh.TaiKhoan;
                     Session["id"] = kh.MaKH;
                     return RedirectToAction("Index","Book");
@@ -160,6 +161,7 @@ namespace WebBanSach.Controllers
 
         public ActionResult DangXuat()
         {
+            Session["acc"] = null;
             Session["taikhoan"] = null;
             Session["id"] = null;
             return RedirectToAction("Index","Book");

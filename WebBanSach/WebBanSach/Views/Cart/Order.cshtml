@@ -38,3 +38,42 @@
         </td>
     </tr>
 </table>
+
+<h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+@{ 
+    KHACHHANG kh = (KHACHHANG)Session["acc"];
+}
+<table align="center">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td> Họ tên khách hàng </td>
+            <td style="font-weight:bold"> @kh.HoTen </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Địa chỉ </td>
+            <td style="font-weight:bold"> @kh.DiaChi </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Điện thoại </td>
+            <td style="font-weight:bold"> @kh.DienThoai </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Ngày đặt hàng </td>
+            <td style="font-weight:bold"> @DateTime.Now.ToShortDateString() </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Ngày giao hàng </td>
+            <td style="font-weight:bold">
+                <input type="date" name="ngaygiao" />
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td></td>
+            <td>
+                <input type="submit" value="ĐỒNG Ý ĐẶT HÀNG"/>
+            </td>
+        </tr>
+    }
+</table>
