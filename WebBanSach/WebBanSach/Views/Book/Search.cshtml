@@ -1,4 +1,7 @@
-﻿@model IEnumerable<WebBanSach.Models.SACH>
+﻿@using WebBanSach.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SACH>
+
 
 @helper Truncate(string input, int length)
 {
@@ -32,3 +35,22 @@
         <div class="cleaner">&nbsp;</div>
     </div>
 }
+
+<div class="cleaner">&nbsp;</div>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+    <div class="MenuPage">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+    <div class="cleaner">&nbsp;</div>
+
+    <style>
+        .MenuPage li {
+            display: inline-block;
+            color: white;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 13px;
+            margin: 0 4px;
+        }
+    </style>

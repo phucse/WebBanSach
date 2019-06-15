@@ -8,51 +8,58 @@
 <h1>Thông tin cá nhân</h1>
 
 <table align="center">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("TTCN", "User", new { id = Session["id"] }))
     {
         @Html.ValidationSummary(true)
         <tr style="height:40px">
             <td>Họ tên: </td>
             <td>
-                @Model.HoTen
-                @ViewData["loi1"]
+                <input type="text" name="hoten" value="@Model.HoTen" />
+                @ViewData["loiHT"]
             </td>
         </tr>
         <tr style="height:40px">
             <td>Tài khoản: </td>
             <td>
                 @Model.TaiKhoan
-                @ViewData["loi2"]
             </td>
         </tr>
         <tr style="height:40px">
             <td>Email: </td>
             <td>
-                @Model.Email
-                @ViewData["loi5"]
+                <input type="email" name="email" value="@Model.Email" />
+                @ViewData["loiE"]
             </td>
         </tr>
         <tr style="height:40px">
             <td>Địa chỉ: </td>
             <td>
-                @Model.DiaChi
-                @ViewData["loidc"]
+                <input type="text" name="diachi" value="@Model.DiaChi" />
+                @ViewData["loiDC"]
             </td>
         </tr>
         <tr style="height:40px">
             <td>Điện thoại: </td>
             <td>
-                @Model.DienThoai
-                @ViewData["loi6"]
+                <input type="text" name="dienthoai" value="@Model.DienThoai" />
+                @ViewData["loiDT"]
             </td>
         </tr>
         <tr style="height:40px">
             <td>Ngày sinh: </td>
             <td>
-                @Model.NgaySinh
-                @ViewData["loi7"]
+                <input type="date" name="ngaysinh" value="@Model.NgaySinh" />
+                @ViewData["loiNS"]
             </td>
         </tr>
+        <tr style="height:40px">
+            <td></td>
+            <td>
+                <input type="submit" value="CẬP NHẬT" />
+                @ViewData["mess"]
+            </td>
+        </tr>
+
     }
 
 </table>

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WebBanSach.Models.SACH>
+﻿@using WebBanSach.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SACH>
 
 @helper Truncate(string input, int length)
 {
@@ -25,7 +27,7 @@
 {
     <div class="templatemo_product_box">
         <h1>@Truncate(@sach.TenSach, 15) <span>(@sach.TacGia)</span></h1>
-        <img src="~/Content/bs/images/templatemo_image_01.jpg" alt="image" />
+        <img src="~/Images/@sach.AnhBia" alt="image" width="100" height="150" />
         <div class="product_info">
             <p>@Truncate(@sach.MoTa, 55)</p>
             <h3>@sach.GiaBan VNĐ</h3>
@@ -34,9 +36,25 @@
         </div>
         <div class="cleaner">&nbsp;</div>
     </div>
-
-    <div class="cleaner_with_width">&nbsp;</div>
 }
 
+<div class="cleaner">&nbsp;</div>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+    <div class="MenuPage">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+    <div class="cleaner">&nbsp;</div>
+
+    <style>
+        .MenuPage li {
+            display: inline-block;
+            color: white;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 13px;
+            margin: 0 4px;
+        }
+    </style>
 
 

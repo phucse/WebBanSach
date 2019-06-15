@@ -216,5 +216,17 @@ namespace WebBanSach.Controllers
 
             return RedirectToAction("NXBSach");
         }
+
+        public ActionResult DSDonHang()
+        {
+            List<DONHANG> dh = db.DONHANGs.OrderBy(d => d.NgayGiao).ToList();
+            return View(dh);
+        }
+
+        public ActionResult OrderDetail(int id)
+        {
+            List<CTDH> ctdh = db.CTDHs.Where(c => c.MaDH == id).ToList();
+            return View(ctdh);
+        }
     }
 }

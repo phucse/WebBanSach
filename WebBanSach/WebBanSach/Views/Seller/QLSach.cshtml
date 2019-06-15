@@ -10,6 +10,12 @@
 <p>
     @Html.ActionLink("THÊM SÁCH MỚI", "Create")
 </p>
+<p>
+    @using (Html.BeginForm("Search", "Seller"))
+    {
+        <input type="search" name="searchCode" placeholder="Tìm sách..." /> <input type="submit" value="Search" />
+    }
+</p>
 <table class="table">
     <tr>
         <th>
@@ -48,7 +54,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.ActionLink(item.TenSach, "BookDetail", new { id = item.MaSach })
@@ -67,7 +74,7 @@
             @Html.DisplayFor(modelItem => item.Soluong)
         </td>
         <td>
-            @String.Format("{0:0,000}",item.GiaBan)
+            @String.Format("{0:0,000}", item.GiaBan)
         </td>
         <td>
             @String.Format("{0:0,000}", item.ShipNoiThanh)
@@ -85,8 +92,8 @@
             @Html.DisplayFor(modelItem => item.THELOAI.TenTL)
         </td>
         <td>
-            @Html.ActionLink("Sửa", "EditBook", new { id=item.MaSach })<br /><br />          
-            @Html.ActionLink("Xoá", "Delete", new { id=item.MaSach })
+            @Html.ActionLink("Sửa", "EditBook", new { id = item.MaSach })<br /><br />          
+            @Html.ActionLink("Xoá", "Delete", new { id = item.MaSach })
         </td>
     </tr>
 }

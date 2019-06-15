@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebBanSach.Models.DONHANG>
+
+@{
+    ViewBag.Title = "DSDonHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DANH SÁCH ĐƠN HÀNG</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Mã đơn hàng
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Ngày giao
+        </th>
+        <th>
+            Khách hàng
+        </th>
+        <th>
+            Thanh toán
+        </th>
+        <th>
+            Giao hàng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayGiao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KHACHHANG.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhToan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaoHang)
+            </td>
+            <td>
+                @Html.ActionLink("Chi tiết", "OrderDetail", new { id = item.MaDH }) |
+                @Html.ActionLink("Xoá đơn hàng", "Delete", new { id = item.MaDH })
+            </td>
+        </tr>
+    }
+
+</table>

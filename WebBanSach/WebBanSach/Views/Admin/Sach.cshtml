@@ -6,7 +6,12 @@
 }
 
 <h2>DANH SÁCH CÁC CUỐN SÁCH</h2>
-
+<p>
+    @using (Html.BeginForm("Search", "Admin"))
+    {
+        <input type="search" name="searchCode" placeholder="Tìm sách..." /> <input type="submit" value="Search" />
+    }
+</p>
 <table class="table">
     <tr>
         <th>

@@ -103,3 +103,7 @@ F:\WebBanSach\WebBanSach\obj\Debug\WebBanSach.csproj.CoreCompileInputs.cache
 F:\WebBanSach\WebBanSach\obj\Debug\WebBanSach.csproj.CopyComplete
 F:\WebBanSach\WebBanSach\obj\Debug\WebBanSach.dll
 F:\WebBanSach\WebBanSach\obj\Debug\WebBanSach.pdb
+F:\WebBanSach\WebBanSach\bin\PagedList.dll
+F:\WebBanSach\WebBanSach\bin\PagedList.Mvc.dll
+F:\WebBanSach\WebBanSach\bin\PagedList.xml
+F:\WebBanSach\WebBanSach\bin\PagedList.Mvc.xml

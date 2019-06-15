@@ -53,7 +53,7 @@ namespace WebBanSach.Controllers
             }
             else if (String.IsNullOrEmpty(matkhau))
             {
-                ViewData["Loi3"] = "Mật khẩu không được để trống";                
+                ViewData["Loi3"] = "Mật khẩu không được để trống";
             }
             else if (matkhau.Length < 6)
             {
@@ -63,7 +63,7 @@ namespace WebBanSach.Controllers
             {
                 ViewData["Loi4"] = "Hãy nhập lại mật khẩu";
             }
-            else if (String.Compare(matkhau,nhaplai,false)!=0)
+            else if (String.Compare(matkhau, nhaplai, false) != 0)
             {
                 ViewData["Loi4"] = "Mật khẩu nhập lại không đúng";
             }
@@ -71,7 +71,7 @@ namespace WebBanSach.Controllers
             {
                 ViewData["Loi5"] = "Email không được để trống";
             }
-            else if (email.IndexOf("@")==-1)
+            else if (email.IndexOf("@") == -1)
             {
                 ViewData["Loi5"] = "Không đúng định dạng mail";
             }
@@ -91,7 +91,7 @@ namespace WebBanSach.Controllers
             {
                 ViewData["Loi6"] = "Sai định dạng";
             }
-            else if (ns>nowdate)
+            else if (ns > nowdate)
             {
                 ViewData["Loi7"] = "Ngày không phù hợp";
             }
@@ -138,12 +138,12 @@ namespace WebBanSach.Controllers
             else
             {
                 KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == taikhoan && n.MatKhau == matkhau);
-                if(kh != null)
+                if (kh != null)
                 {
                     Session["acc"] = kh;
                     Session["taikhoan"] = kh.TaiKhoan;
                     Session["id"] = kh.MaKH;
-                    return RedirectToAction("Index","Book");
+                    return RedirectToAction("Index", "Book");
                 }
                 else
                 {
@@ -164,12 +164,13 @@ namespace WebBanSach.Controllers
             Session["acc"] = null;
             Session["taikhoan"] = null;
             Session["id"] = null;
-            return RedirectToAction("Index","Book");
+            return RedirectToAction("Index", "Book");
         }
 
+        [HttpGet]
         public ActionResult TTCN(int id)
         {
-            if(Session["id"]==null)
+            if (Session["id"] == null)
             {
                 return RedirectToAction("DangNhap", "User");
             }
@@ -180,7 +181,78 @@ namespace WebBanSach.Controllers
                          select u;
                 return View(us.Single());
             }
-            
         }
+
+        [HttpPost]
+        public ActionResult TTCN(int id, FormCollection collection)
+        {
+
+            int idkh = (int)Session["id"];
+            var hoten = collection["hoten"];
+            var email = collection["email"];
+            var diachi = collection["diachi"];
+            var dienthoai = collection["dienthoai"];
+            var ngaysinh = String.Format("{0:MM-dd-yyyy}", collection["ngaysinh"]);
+
+            List<KHACHHANG> em = db.KHACHHANGs.Where(e => e.Email.Contains(email)).ToList();
+
+            if (String.IsNullOrEmpty(hoten))
+            {
+                ViewData["loiHT"] = "Họ tên không được để trống";
+            }
+            else if (String.IsNullOrEmpty(email))
+            {
+                ViewData["loiE"] = "Email không được để trống";
+            }
+            else if (em.Count != 0)
+            {
+                ViewData["loiE"] = "Email đã tồn tại";
+            }
+            else if (String.IsNullOrEmpty(diachi))
+            {
+                ViewData["loiDC"] = "Địa chỉ không được để trống";
+            }
+            else if (String.IsNullOrEmpty(dienthoai))
+            {
+                ViewData["loiDT"] = "Điện thoại không được để trống";
+            }
+            else if (dienthoai.Length < 9 || dienthoai.Length > 11)
+            {
+                ViewData["loiDT"] = "Sai định dạng";
+            }
+            else
+            {
+                try
+                {
+                    DateTime ns = DateTime.Parse(ngaysinh);
+                    DateTime nowdate = DateTime.Now;
+
+                    if (ns > nowdate)
+                    {
+                        ViewData["loiNS"] = "Ngày không phù hợp";
+                    }
+                    var kh = db.KHACHHANGs.SingleOrDefault(k => k.MaKH == idkh);
+                    kh.HoTen = hoten;
+                    kh.Email = email;
+                    kh.DienThoai = dienthoai;
+                    kh.DiaChi = diachi;
+                    kh.Email = email;
+                    kh.DienThoai = dienthoai;
+                    kh.NgaySinh = ns;
+                    db.SubmitChanges();
+                    ViewData["mess"] = "Cập nhật thành công";
+                }
+                catch (Exception ex)
+                {
+                    ViewData["mess"] = "Cập nhật thất bại";
+                    return this.TTCN(idkh);
+                }
+            }
+            
+            return this.TTCN(idkh);
+
+        }
+
+
     }
 }

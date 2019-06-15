@@ -26,7 +26,7 @@
 
     <p>@Model.MoTa</p>
     
-    <div class="buy_now_button"><a href="#">Mua hàng</a></div>
+    <div class="buy_now_button"><a href="@Url.Action("ChiTietGioHang","Cart")">Mua hàng</a></div>
     <div class="detail_button"><a href="@Url.Action("AddCart","Cart",new { @iMaSach = @Model.MaSach, @strURL = Request.Url.ToString() })">Thêm giỏ hàng</a></div>
 
 

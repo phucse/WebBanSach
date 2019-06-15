@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebBanSach.Models.DONHANG>
+
+@{
+    ViewBag.Title = "DuyetDH";
+    Layout = "~/Views/Shared/_LayoutSeller.cshtml";
+}
+
+<h2>DUYỆT ĐƠN HÀNG</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Mã đơn hàng
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Ngày giao
+        </th>
+        <th>
+            Khách hàng
+        </th>
+        <th>
+            Thanh toán
+        </th>
+        <th>
+            Giao hàng
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayGiao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.HoTen)
+        </td>
+        @using (Html.BeginForm("UpdateDH","Order",new { id = item.MaDH}))
+        {
+            <td>
+                <select name="thanhtoan">
+                    <option value="0" selected>--Đang đợi--</option>
+                    <option value="1">Chấp Nhận</option>
+                    <option value="2">Huỷ Bỏ</option>
+                </select>
+            </td>
+            <td>
+                <select name="giaohang">
+                    <option value="0" selected>--Đang đợi--</option>
+                    <option value="1">Chấp Nhận</option>
+                    <option value="2">Huỷ Bỏ</option>
+                </select>
+            </td>
+            <td>
+                <input type="submit" value="Cập nhật" />
+            </td>
+        }
+
+        <td>
+            @Html.ActionLink("Chi tiết", "ChiTietDH", new { id = item.MaDH }) |
+            @Html.ActionLink("Huỷ đơn hàng", "Delete", new { id = item.MaDH })
+        </td>
+    </tr>
+    }
+
+</table>

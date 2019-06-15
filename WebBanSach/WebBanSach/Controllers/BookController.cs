@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebBanSach.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WebBanSach.Controllers
 {
@@ -11,11 +13,12 @@ namespace WebBanSach.Controllers
     {
         dbBookDataContext db = new dbBookDataContext();
 
-        // GET: Book
-        public ActionResult Index()
+        public ActionResult Index( int ? page)
         {
+            int pageSize=4;
+            int pageNum = (page ?? 1);
             var book = GetBook();           
-            return View(book);
+            return View(book.ToPagedList(pageNum,pageSize));
         }
 
         public List<SACH> GetBook()
@@ -29,10 +32,12 @@ namespace WebBanSach.Controllers
             return PartialView(type);
         }
 
-        public ActionResult SachTheoTL(int id)
+        public ActionResult SachTheoTL(int id,int ? page)
         {
+            int pageSize = 4;
+            int pageNum = (page ?? 1);
             var book = from b in db.SACHes where b.MaTL == id select b;
-            return View(book);
+            return View(book.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult NXB()
@@ -41,10 +46,12 @@ namespace WebBanSach.Controllers
             return PartialView(nxb);
         }
 
-        public ActionResult SachTheoNXB(int id)
+        public ActionResult SachTheoNXB(int id, int? page)
         {
+            int pageSize = 4;
+            int pageNum = (page ?? 1);
             var book = from b in db.SACHes where b.MaNXB == id select b;
-            return View(book);
+            return View(book.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult Detail(int id)
@@ -55,8 +62,10 @@ namespace WebBanSach.Controllers
             return View(book.Single());
         }
 
-        public ActionResult Search(String searchCode)
+        public ActionResult Search(String searchCode, int? page)
         {
+            int pageSize = 4;
+            int pageNum = (page ?? 1);
             List<SACH> sach;
             if (!String.IsNullOrEmpty(searchCode))
             {
@@ -69,7 +78,7 @@ namespace WebBanSach.Controllers
                 else
                 {
                     ViewData["titleSearch"] = "Có " + sach.Count() + " kết quả tìm kiếm: ";
-                    return View(sach);
+                    return View(sach.ToPagedList(pageNum, pageSize));
                 }                    
             }
             else

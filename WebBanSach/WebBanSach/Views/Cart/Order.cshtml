@@ -49,19 +49,27 @@
         @Html.ValidationSummary(true)
         <tr style="height:40px">
             <td> Họ tên khách hàng </td>
-            <td style="font-weight:bold"> @kh.HoTen </td>
+            <td style="font-weight:bold">
+                <input type="text" name="hoten" value="@kh.HoTen" />
+            </td>
         </tr>
         <tr style="height:40px">
             <td> Địa chỉ </td>
-            <td style="font-weight:bold"> @kh.DiaChi </td>
+            <td style="font-weight:bold">
+                <input type="text" name="diachi" value="@kh.DiaChi" />
+            </td>
         </tr>
         <tr style="height:40px">
             <td> Điện thoại </td>
-            <td style="font-weight:bold"> @kh.DienThoai </td>
+            <td style="font-weight:bold">
+                <input type="text" name="dienthoai" value="@kh.DienThoai" />
+            </td>
         </tr>
         <tr style="height:40px">
             <td> Ngày đặt hàng </td>
-            <td style="font-weight:bold"> @DateTime.Now.ToShortDateString() </td>
+            <td style="font-weight:bold">
+                @String.Format("{0:dd/MM/yyyy}", DateTime.Now)
+            </td>
         </tr>
         <tr style="height:40px">
             <td> Ngày giao hàng </td>
@@ -70,9 +78,15 @@
             </td>
         </tr>
         <tr style="height:40px">
+            <td> Lời nhắn </td>
+            <td style="font-weight:bold">
+                <textarea name="ghichu" placeholder="Để lại lời nhắn cho người giao hàng..."></textarea>
+            </td>
+        </tr>
+        <tr style="height:40px">
             <td></td>
             <td>
-                <input type="submit" value="ĐỒNG Ý ĐẶT HÀNG"/>
+                <input type="submit" value="ĐỒNG Ý ĐẶT HÀNG" />
             </td>
         </tr>
     }
