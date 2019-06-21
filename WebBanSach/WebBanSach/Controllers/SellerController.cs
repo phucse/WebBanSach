@@ -29,34 +29,43 @@ namespace WebBanSach.Controllers
         [HttpGet]
         public ActionResult LoginS()
         {
-            return View();
+            if (Session["seller"] != null)
+            {
+                return RedirectToAction("IndexS", "Seller");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
         public ActionResult LoginS(FormCollection collection)
         {
-            var un = collection["username"];
-            var pass = collection["pass"];
-            if (String.IsNullOrEmpty(un))
-            {
-                ViewData["Er1"] = "Hãy nhập tên đăng nhập";
-            }
-            else if (String.IsNullOrEmpty(pass))
-            {
-                ViewData["Er2"] = "Hãy nhập mật khẩu";
-            }
-            else
-            {
-                NGUOIBAN nb = db.NGUOIBANs.SingleOrDefault(n => n.TKNB == un && n.MKNB == pass);
-                if (nb != null)
+           
+                var un = collection["username"];
+                var pass = collection["pass"];
+                if (String.IsNullOrEmpty(un))
                 {
-                    Session["seller"] = nb.MaNB;
-                    return RedirectToAction("IndexS", "Seller");
+                    ViewData["Er1"] = "Hãy nhập tên đăng nhập";
+                }
+                else if (String.IsNullOrEmpty(pass))
+                {
+                    ViewData["Er2"] = "Hãy nhập mật khẩu";
                 }
                 else
-                    ViewBag.Mess = "Username hoặc Password không đúng";
-            }
-            return View();
+                {
+                    NGUOIBAN nb = db.NGUOIBANs.SingleOrDefault(n => n.TKNB == un && n.MKNB == pass);
+                    if (nb != null)
+                    {
+                        Session["seller"] = nb.MaNB;
+                        return RedirectToAction("IndexS", "Seller");
+                    }
+                    else
+                        ViewBag.Mess = "Username hoặc Password không đúng";
+                }
+                return View();
+            
         }
 
         public ActionResult QLSach()
@@ -244,5 +253,24 @@ namespace WebBanSach.Controllers
             }
         }
 
+        public ActionResult DangXuat()
+        {
+            Session["seller"]=null;
+            return RedirectToAction("LoginS", "Seller");
+        }
+
+        public ActionResult InfoSeller()
+        {
+            if (Session["seller"] == null)
+            {
+                return RedirectToAction("LoginS", "Seller");
+            }
+            else
+            {
+                int idS = (int)Session["seller"];
+                var info = from i in db.NGUOIBANs where i.MaNB == idS select i;
+                return View(info.Single());
+            }
+        }
     }
 }

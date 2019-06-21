@@ -220,7 +220,8 @@ namespace WebBanSach.Controllers
                         MaSach = item.idSach,
                         DonGia = (decimal)item.dDonGia,
                         SoLuong = item.iSoLuong
-                    });                    
+                    });
+                    donhangs.Add(dh_nb);
 
                     var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["ngaygiao"]);
                     dh_nb.donhang = new DONHANG
@@ -231,6 +232,7 @@ namespace WebBanSach.Controllers
                         GiaoHang = false,
                         ThanhToan = false
                     };
+                    donhangs.Add(dh_nb);
 
                     dh_nb.donhang.DIACHIGIAO = new DIACHIGIAO
                     {
@@ -245,9 +247,6 @@ namespace WebBanSach.Controllers
 
                 db.DONHANGs.InsertAllOnSubmit(donhangs.Select(c => c.donhang));
             }
-            db.SubmitChanges();
-
-            
             db.SubmitChanges();
             Session["cart"] = null;
             return RedirectToAction("ConfirmOrder", "Cart");

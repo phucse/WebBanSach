@@ -6,7 +6,9 @@
 }
 
 <h1>Thông tin cá nhân</h1>
-
+<h2>
+    @Html.ActionLink("Xem danh sách đơn hàng", "XemDonHang", "User")
+</h2>
 <table align="center">
     @using (Html.BeginForm("TTCN", "User", new { id = Session["id"] }))
     {

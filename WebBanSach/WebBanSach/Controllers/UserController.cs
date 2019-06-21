@@ -119,39 +119,49 @@ namespace WebBanSach.Controllers
         [HttpGet]
         public ActionResult DangNhap()
         {
-            return View();
+            if (Session["acc"] != null)
+            {
+                return RedirectToAction("Index", "Book");
+            }
+            else
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult DangNhap(FormCollection collection)
         {
-            var taikhoan = collection["taikhoan"];
-            var matkhau = collection["matkhau"];
+            
+                var taikhoan = collection["taikhoan"];
+                var matkhau = collection["matkhau"];
 
-            if (String.IsNullOrEmpty(taikhoan))
-            {
-                ViewData["Loi1"] = "Tài khoản không được để trống";
-            }
-            else if (String.IsNullOrEmpty(matkhau))
-            {
-                ViewData["Loi2"] = "Mật khẩu không được để trống";
-            }
-            else
-            {
-                KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == taikhoan && n.MatKhau == matkhau);
-                if (kh != null)
+                if (String.IsNullOrEmpty(taikhoan))
                 {
-                    Session["acc"] = kh;
-                    Session["taikhoan"] = kh.TaiKhoan;
-                    Session["id"] = kh.MaKH;
-                    return RedirectToAction("Index", "Book");
+                    ViewData["Loi1"] = "Tài khoản không được để trống";
+                }
+                else if (String.IsNullOrEmpty(matkhau))
+                {
+                    ViewData["Loi2"] = "Mật khẩu không được để trống";
                 }
                 else
                 {
-                    ViewBag.Thongbao = "Sai tài khoản hoặc mật khẩu";
+                    KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == taikhoan && n.MatKhau == matkhau);
+                    if (kh != null)
+                    {
+                        Session["acc"] = kh;
+                        Session["taikhoan"] = kh.TaiKhoan;
+                        Session["id"] = kh.MaKH;
+                        return RedirectToAction("Index", "Book");
+                    }
+                    else
+                    {
+                        ViewBag.Thongbao = "Sai tài khoản hoặc mật khẩu";
+                    }
                 }
-            }
 
-            return View();
+                return View();
+            
+            
         }
 
         public ActionResult NguoiDung()
@@ -253,6 +263,32 @@ namespace WebBanSach.Controllers
 
         }
 
+        public ActionResult XemDonHang()
+        {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("DangNhap", "User");
+            }
+            else
+            {
+                int idUser = (int)Session["id"];
+                List<DONHANG> donhang = db.DONHANGs.OrderByDescending(d => d.NgayDat).Where(d => d.MaKH == idUser).ToList();
+                return View(donhang);
+            }
+        }
+
+        public ActionResult CTDH(int id)
+        {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("DangNhap", "User");
+            }
+            else
+            {
+                List<CTDH> ctdh = db.CTDHs.Where(c => c.MaDH == id).ToList();
+                return View(ctdh);
+            }
+        }
 
     }
 }

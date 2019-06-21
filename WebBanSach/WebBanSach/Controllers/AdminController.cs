@@ -20,7 +20,14 @@ namespace WebBanSach.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            if (Session["acc"] != null)
+            {
+                return RedirectToAction("Index", "Book");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -227,6 +234,26 @@ namespace WebBanSach.Controllers
         {
             List<CTDH> ctdh = db.CTDHs.Where(c => c.MaDH == id).ToList();
             return View(ctdh);
+        }
+
+        public ActionResult QLNguoiDung()
+        {
+            if (Session["admin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            else
+            {
+                List<KHACHHANG> kh = db.KHACHHANGs.OrderBy(k => k.MaKH).ToList();
+                return View(kh);
+            }
+            
+        }
+
+        public ActionResult CTKH(int id)
+        {
+            var kh = from k in db.KHACHHANGs where k.MaKH == id select k;
+            return View(kh.Single());
         }
     }
 }

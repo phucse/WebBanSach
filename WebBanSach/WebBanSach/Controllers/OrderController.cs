@@ -98,6 +98,19 @@ namespace WebBanSach.Controllers
             
         }
 
-
+        public ActionResult GiaoHang(int id)
+        {
+            if (Session["seller"] == null)
+            {
+                return RedirectToAction("LoginS", "Seller");
+            }
+            else
+            {
+                var gh = from g in db.DIACHIGIAOs
+                           where g.MaDH == id
+                           select g;
+                return View(gh.Single());
+            }
+        }
     }
 }

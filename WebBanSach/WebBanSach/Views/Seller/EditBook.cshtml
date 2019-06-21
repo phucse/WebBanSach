@@ -17,7 +17,7 @@
         @Html.HiddenFor(model => model.MaSach)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenSach, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Tên sách</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenSach, "", new { @class = "text-danger" })
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Mô tả</label>
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AnhBia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Hình ảnh</label>
             <div class="col-md-10">
                 <input type="file" name="fileUpload" accept=".JPG, .PNG, .BMP, .JPEG" />
                 @ViewBag.ThongBao
@@ -41,7 +41,7 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.Soluong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Số lượng</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Soluong, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Soluong, "", new { @class = "text-danger" })
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GiaBan, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Giá bán</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShipNoiThanh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Ship nội thành</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ShipNoiThanh, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ShipNoiThanh, "", new { @class = "text-danger" })
@@ -65,7 +65,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShipTinh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Ship tỉnh</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ShipTinh, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ShipTinh, "", new { @class = "text-danger" })
@@ -73,7 +73,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TacGia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Tác giả</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TacGia, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
@@ -81,14 +81,14 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaNXB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Nhà xuất bản</label>
             <div class="col-md-10">
                 @Html.DropDownList("MaNXB")
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaTL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Thể loại</label>
             <div class="col-md-10">
                 @Html.DropDownList("MaTL")
             </div>

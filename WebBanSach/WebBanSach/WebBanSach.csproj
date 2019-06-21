@@ -456,6 +456,12 @@
     <Content Include="Views\Order\DSDH.cshtml" />
     <Content Include="Views\Admin\DSDonHang.cshtml" />
     <Content Include="Views\Order\ChiTietDH.cshtml" />
+    <Content Include="Views\User\XemDonHang.cshtml" />
+    <Content Include="Views\User\CTDH.cshtml" />
+    <Content Include="Views\Order\GiaoHang.cshtml" />
+    <Content Include="Views\Seller\InfoSeller.cshtml" />
+    <Content Include="Views\Admin\CTKH.cshtml" />
+    <Content Include="Views\Admin\QLNguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

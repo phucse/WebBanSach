@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<WebBanSach.Models.DONHANG>
 
 @{
-    ViewBag.Title = "DSDH";
-    Layout = "~/Views/Shared/_LayoutSeller.cshtml";
+    ViewBag.Title = "XemDonHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
 <h2>DANH SÁCH ĐƠN HÀNG</h2>
@@ -16,10 +16,10 @@
             Ngày đặt
         </th>
         <th>
-            Ngày giao
+            Ngày Giao
         </th>
         <th>
-            Khách hàng
+            Tên khách hàng
         </th>
         <th>
             Thanh toán
@@ -45,15 +45,13 @@
             @Html.DisplayFor(modelItem => item.KHACHHANG.HoTen)
         </td>
         <td>
-            Đã thanh toán
+            Chưa thanh toán
         </td>
         <td>
-            Đã giao hàng
+            Chưa giao hàng
         </td>
         <td>
-            @Html.ActionLink("Giao hàng", "GiaoHang", new { id = item.MaDH }) |
-            @Html.ActionLink("Chi tiết", "ChiTietDH", new { id = item.MaDH }) |
-            @Html.ActionLink("Xoá đơn hàng", "Delete", new { id = item.MaDH })
+            @Html.ActionLink("Chi tiết đơn hàng", "CTDH", new { id = item.MaDH }) 
         </td>
     </tr>
 }

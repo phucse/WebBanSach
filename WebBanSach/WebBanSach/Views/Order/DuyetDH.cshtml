@@ -52,14 +52,12 @@
                 <select name="thanhtoan">
                     <option value="0" selected>--Đang đợi--</option>
                     <option value="1">Chấp Nhận</option>
-                    <option value="2">Huỷ Bỏ</option>
                 </select>
             </td>
             <td>
                 <select name="giaohang">
                     <option value="0" selected>--Đang đợi--</option>
                     <option value="1">Chấp Nhận</option>
-                    <option value="2">Huỷ Bỏ</option>
                 </select>
             </td>
             <td>
@@ -68,6 +66,7 @@
         }
 
         <td>
+            @Html.ActionLink("Giao hàng", "GiaoHang", new { id = item.MaDH }) |
             @Html.ActionLink("Chi tiết", "ChiTietDH", new { id = item.MaDH }) |
             @Html.ActionLink("Huỷ đơn hàng", "Delete", new { id = item.MaDH })
         </td>
